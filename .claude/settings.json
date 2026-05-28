@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"e:\\\\Project\\\\billfish\" -Recurse | Where-Object { $_.Extension -match '\\\\.\\(png|ico|svg|jpg|jpeg\\)' } | Select-Object FullName, Name)",
+      "Read(//e/Project/billfish/**)"
+    ],
+    "additionalDirectories": [
+      "e:\\Project\\billfish\\assets\\icons"
+    ]
+  }
+}

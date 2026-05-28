@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    * { box-sizing: border-box; }
+    body { width: 280px; padding: 14px; font-family: sans-serif; margin: 0; font-size: 13px; }
+
+    .row-stat { display: flex; justify-content: space-between; color: #444; }
+    .row-stat strong { color: #111; }
+
+    .filter-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      color: #444;
+    }
+    .filter-row input[type=range] { flex: 1; accent-color: #555; }
+    .size-val { min-width: 52px; text-align: right; color: #666; white-space: nowrap; }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+      color: #444;
+    }
+    .switch { position: relative; display: inline-block; width: 32px; height: 18px; flex-shrink: 0; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .knob {
+      position: absolute; cursor: pointer; inset: 0;
+      background: #ccc; border-radius: 18px; transition: background .2s;
+    }
+    .knob::before {
+      content: ''; position: absolute;
+      width: 12px; height: 12px; left: 3px; bottom: 3px;
+      background: #fff; border-radius: 50%; transition: transform .2s;
+    }
+    .switch input:checked + .knob { background: #555; }
+    .switch input:checked + .knob::before { transform: translateX(14px); }
+
+    button {
+      width: 100%; padding: 7px; margin-top: 10px; cursor: pointer;
+      border: 1px solid #ccc; border-radius: 6px; font-size: 13px;
+    }
+    button:hover { background: #f0f0f0; }
+
+    #status { margin-top: 6px; font-size: 12px; color: #666; min-height: 16px; }
+
+    #img-list {
+      margin-top: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+    }
+    #img-list:empty { display: none; }
+    .img-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 8px;
+      border-bottom: 1px solid #f0f0f0;
+      gap: 8px;
+    }
+    .img-item:last-child { border-bottom: none; }
+    .img-item input[type=checkbox] { flex-shrink: 0; cursor: pointer; }
+    .img-name {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #333;
+      cursor: pointer;
+    }
+    .img-dim {
+      flex-shrink: 0;
+      color: #999;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .list-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      font-size: 11px;
+      color: #888;
+      background: #fafafa;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .list-header input[type=checkbox] { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="row-stat">
+    <span>本次已下载</span>
+    <strong><span id="count">0</span> 张</strong>
+  </div>
+
+  <div class="filter-row">
+    <span>最小尺寸</span>
+    <input type="range" id="min-size" min="0" max="800" step="10" value="100">
+    <span class="size-val"><span id="size-val">100</span> px</span>
+  </div>
+
+  <div class="toggle-row">
+    <span>包含尺寸未知的图片</span>
+    <label class="switch">
+      <input type="checkbox" id="include-unknown" checked>
+      <span class="knob"></span>
+    </label>
+  </div>
+
+  <button id="btn-all">下载页面所有图片</button>
+  <div id="status"></div>
+  <div id="img-list"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
