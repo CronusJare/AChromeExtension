@@ -1,7 +1,7 @@
 # 图片下载 Chrome 插件 — 开发设计文档
 
-> 目标：右键 / Alt+点击把网页图片下载到本地 Downloads 文件夹，支持需要登录的站点（微博、Pinterest 等）。
-> 参考：Billfish 插件源码（C:\Project\billfish）
+> 目标：右键 / Alt+点击把网页图片下载到本地 Downloads 文件夹，支持需要登录的站点（Pinterest 等）。
+> 参考：Billfish 插件源码（billfish）
 
 ---
 
